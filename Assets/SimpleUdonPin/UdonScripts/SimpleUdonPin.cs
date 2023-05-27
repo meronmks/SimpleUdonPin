@@ -56,24 +56,35 @@ public class SimpleUdonPin : UdonSharpBehaviour
         {
             if (Networking.LocalPlayer.IsOwner(this.gameObject))
             {
-                Success();
+                SuccessSync();
             }
             else
             {
-                SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(Success));
+                SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(SuccessSync));
             }
+            SendCustomNetworkEvent(NetworkEventTarget.All, nameof(ActiveObjects));
+            SendCustomNetworkEvent(NetworkEventTarget.All, nameof(InactiveObjects));
+            Teleport();
         }
         inputField.text = "";
     }
 
-    public void Success()
+    public void SuccessSync()
     {
         isPinSuccessed = true;
+        RequestSerialization();
+    }
+
+    public void Teleport()
+    {
         if(teleportTarget != null)
         {
             Networking.LocalPlayer.TeleportTo(teleportTarget.position, teleportTarget.rotation);
         }
-            
+    }
+
+    public void ActiveObjects()
+    {
         if (activeObjects != null)
         {
             for (int i = 0; i < activeObjects.Length; i++)
@@ -81,7 +92,10 @@ public class SimpleUdonPin : UdonSharpBehaviour
                 activeObjects[i].SetActive(true);
             }
         }
-
+    }
+    
+    public void InactiveObjects()
+    {
         if (inactiveObjects != null)
         {
             for (int i = 0; i < inactiveObjects.Length; i++)
@@ -89,6 +103,5 @@ public class SimpleUdonPin : UdonSharpBehaviour
                 inactiveObjects[i].SetActive(false);
             }
         }
-        RequestSerialization();
     }
 }
