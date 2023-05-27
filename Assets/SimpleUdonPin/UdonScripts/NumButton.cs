@@ -1,15 +1,17 @@
-﻿
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NumButton : UdonSharpBehaviour
+namespace MeronmksTools.SimpleUdonPin
 {
-    [SerializeField] private InputField inputField;
-    [SerializeField] private string num;
-    
-    public void Click()
+    public class NumButton : UdonSharpBehaviour
     {
-        inputField.text += num;
+        [SerializeField] private InputField inputField;
+        [SerializeField] private string num;
+    
+        public void Click()
+        {
+            inputField.text += num;
+        }
     }
 }

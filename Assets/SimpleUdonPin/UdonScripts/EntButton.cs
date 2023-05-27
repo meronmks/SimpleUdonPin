@@ -1,14 +1,15 @@
-﻿
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class EntButton : UdonSharpBehaviour
+namespace MeronmksTools.SimpleUdonPin
 {
-    [SerializeField] private SimpleUdonPin simpleUdonPin;
-
-    public void Click()
+    public class EntButton : UdonSharpBehaviour
     {
-        simpleUdonPin.SendCustomEvent(nameof(simpleUdonPin.CheckPin));
+        [SerializeField] private SimpleUdonPin simpleUdonPin;
+
+        public void Click()
+        {
+            simpleUdonPin.SendCustomEvent(nameof(simpleUdonPin.CheckPin));
+        }
     }
 }

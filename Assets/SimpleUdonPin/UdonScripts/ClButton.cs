@@ -1,14 +1,16 @@
-﻿
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClButton : UdonSharpBehaviour
+namespace MeronmksTools.SimpleUdonPin
 {
-    [SerializeField] private InputField inputField;
-
-    public void Click()
+    public class ClButton : UdonSharpBehaviour
     {
-        inputField.text = "";
+        [SerializeField] private InputField inputField;
+
+        public void Click()
+        {
+            inputField.text = "";
+        }
     }
 }

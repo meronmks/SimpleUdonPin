@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: 8703570834445936857
+  scriptID: 3796122166713725975
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: SimpleUdonPin, SimpleUdonPin
+      Data: MeronmksTools.SimpleUdonPin.SimpleUdonPin, SimpleUdonPin
     - Name: 
       Entry: 8
       Data: 
