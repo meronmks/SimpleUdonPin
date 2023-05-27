@@ -301,13 +301,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633785468342437952}
   m_TextComponent: {fileID: 633785468506126276}
   m_Placeholder: {fileID: 633785469534395888}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 8
+  m_InputType: 2
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 10
   m_OnEndEdit:
     m_PersistentCalls:
@@ -2120,7 +2120,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 633785468977857195}
-  inputField: {fileID: 633785468342437953}
   simpleUdonPin: {fileID: 8220117037358643101}
 --- !u!114 &633785468977857195
 MonoBehaviour:
