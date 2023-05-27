@@ -23,10 +23,12 @@ jobs:
             uses: actions/checkout@v2
             with:
                 token: ${{ secrets.GITHUB_TOKEN }}
-          - name: Archive
-            run: |
-                cd ./Assets/SimpleUdonPin
-                zip -r ${{ steps.version.outputs.filename }}.zip ./ -x "*.git*" ../../
+          - name: Create Zip
+            uses: thedoctor0/zip-release@09336613be18a8208dfa66bd57efafd9e2685657
+            with:
+              type: "zip"
+              directory: "./Assets/SimpleUdonPin"
+              filename: "../../${{ steps.version.outputs.filename }}.zip" # make the zip file two directories up, since we start two directories in above
           
           - run: find "./Assets/SimpleUdonPin" -name \*.meta >> metaList
           - name: Create UnityPackage
@@ -34,32 +36,12 @@ jobs:
             with:
               package-path: "${{ steps.version.outputs.filename }}.unitypackage"
               include-files: metaList
-          - name: Create Release
-            id: create_release
-            uses: actions/create-release@v1
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          - name: Make Release
+            uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5
             with:
-                tag_name: ${{ github.ref }}
-                release_name: Release ${{ github.ref }}
-                draft: false
-                prerelease: false
-          - name: Upload Release Zip
-            uses: actions/upload-release-asset@v1
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-                upload_url: ${{ steps.create_release.outputs.upload_url }}
-                asset_path: ./${{ steps.version.outputs.filename }}.zip
-                asset_name: ${{ steps.version.outputs.filename }}.zip
-                asset_content_type: application/zip
-          - name: Upload Release UnityPackage
-            uses: actions/upload-release-asset@v1
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-                upload_url: ${{ steps.create_release.outputs.upload_url }}
-                asset_path: ./${{ steps.version.outputs.filename }}.unitypackage
-                asset_name: ${{ steps.version.outputs.filename }}.unitypackage
-                asset_content_type: application/zip
+              tag_name: ${{ steps.version.outputs.prop }}
+              files: |
+                ${{ steps.version.outputs.filename }}.zip
+                ${{ steps.version.outputs.filename }}.unitypackage
+                ./Assets/SimpleUdonPin/package.json
          
